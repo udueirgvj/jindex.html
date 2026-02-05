@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دعم المتطوعين | منصة الدعم التطوعي</title>
+    <title>دعم المتطوعين | المنصة العربية الشاملة</title>
     <style>
         :root {
             --primary-color: #4f46e5;
@@ -25,39 +25,43 @@
             color: #1e293b;
             line-height: 1.6;
             min-height: 100vh;
+            display: flex;
         }
         
-        /* 🔝 الشريط العلوي الجديد - قصير وأنيق */
+        /* 🔝 الشريط العلوي الجديد */
         .site-header {
             background-color: var(--dark-color);
             color: white;
-            padding: 12px 20px;
+            padding: 15px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             z-index: 1000;
             border-bottom: 3px solid var(--primary-color);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         .logo-section {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
         }
         
         .site-logo {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             background: linear-gradient(135deg, #4f46e5, #7c3aed);
-            border-radius: 10px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            border: 2px solid white;
+            border: 3px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
         .site-logo img {
@@ -66,39 +70,39 @@
             object-fit: cover;
         }
         
-        .site-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, #4f46e5, #7c3aed);
+        /* اسم الموقع ب7 ألوان */
+        .rainbow-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            background: linear-gradient(
+                90deg,
+                #ff0000 0%,
+                #ff9900 17%,
+                #ffff00 34%,
+                #00ff00 51%,
+                #00ffff 68%,
+                #0000ff 85%,
+                #9900ff 100%
+            );
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
         }
         
-        /* قائمة التنقل بثلاث خطوط (هامبرغر) */
+        /* قائمة التنقل */
         .nav-menu {
             display: flex;
             align-items: center;
         }
         
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
-        }
-        
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background-color: white;
-            border-radius: 2px;
-        }
-        
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
         }
         
         .nav-links li {
@@ -109,93 +113,178 @@
             color: white;
             text-decoration: none;
             font-weight: 600;
-            padding: 8px 12px;
-            border-radius: 6px;
+            padding: 10px 15px;
+            border-radius: 8px;
             transition: all 0.3s;
             display: flex;
             align-items: center;
             gap: 8px;
+            font-size: 1.1rem;
         }
         
         .nav-links a:hover {
-            background-color: rgba(255,255,255,0.1);
+            background-color: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
         }
         
         .nav-links a.active {
             background-color: var(--primary-color);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
         }
         
-        /* إشعارات */
-        .notification-badge {
-            background-color: #ef4444;
+        /* 🔵 الشريط الجانبي */
+        .sidebar {
+            width: 300px;
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
             color: white;
-            font-size: 0.7rem;
-            padding: 2px 6px;
-            border-radius: 10px;
-            position: absolute;
-            top: -5px;
-            right: -5px;
-        }
-        
-        /* المحتوى الرئيسي */
-        .main-container {
-            max-width: 1200px;
-            margin: 0 auto;
             padding: 20px;
+            position: fixed;
+            top: 93px;
+            right: 0;
+            bottom: 0;
+            overflow-y: auto;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            z-index: 999;
         }
         
-        /* بطاقة الإحصائيات */
-        .stats-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 20px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-        
-        .stats-title {
-            text-align: center;
-            font-size: 1.8rem;
+        .sidebar-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
             margin-bottom: 25px;
+            border-right: 4px solid var(--primary-color);
+        }
+        
+        .sidebar-title {
+            color: #60a5fa;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-weight: 700;
         }
         
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            text-align: center;
+        .sidebar-title i {
+            font-size: 1.5rem;
         }
         
-        .stat-item {
-            background: rgba(255,255,255,0.1);
-            padding: 20px;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
+        .stats-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         
-        .stat-number {
-            font-size: 2.5rem;
+        .stats-item:last-child {
+            border-bottom: none;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
             font-weight: 800;
-            margin-bottom: 5px;
-            background: linear-gradient(90deg, #fff, #e2e8f0);
+            color: #4f46e5;
+            background: linear-gradient(45deg, #4f46e5, #7c3aed);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
         
         .stat-label {
-            font-size: 1rem;
-            opacity: 0.9;
+            color: #cbd5e1;
+            font-size: 0.95rem;
         }
         
-        /* واجهات الصفحات */
-        .page {
+        /* 🔥 روابط التواصل مع الصور */
+        .contact-badges {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .contact-badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255,255,255,0.08);
+            padding: 20px 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        
+        .contact-badge:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-3px);
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            background: rgba(255,255,255,0.1);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .contact-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        /* المحتوى الرئيسي */
+        .main-content {
+            flex: 1;
+            margin-right: 320px;
+            margin-top: 93px;
+            padding: 30px;
+            max-width: calc(100% - 320px);
+        }
+        
+        /* بطاقة النظام */
+        .system-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--primary-color);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .card-header i {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .card-header h2 {
+            margin: 0;
+            color: var(--dark-color);
+            font-size: 1.8rem;
+        }
+        
+        /* واجهات المستخدم والمشرف */
+        .panel-container {
             display: none;
             animation: fadeIn 0.5s ease;
         }
         
-        .page.active {
+        .panel-container.active {
             display: block;
         }
         
@@ -204,252 +293,228 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* صفحة الرئيسية - حل المشاكل */
-        .hero-section {
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            border-radius: 15px;
-            margin: 20px 0;
+        /* نموذج المستخدم */
+        .form-group {
+            margin-bottom: 25px;
         }
         
-        .hero-title {
-            font-size: 2.5rem;
-            color: var(--dark-color);
-            margin-bottom: 15px;
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #334155;
+            font-size: 1.1rem;
         }
         
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: #64748b;
-            margin-bottom: 30px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
         }
         
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 40px 0;
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
         }
         
-        .feature-card {
-            background: white;
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #059669, #10b981);
+            color: white;
+        }
+        
+        /* قائمة المشاكل */
+        .tickets-container {
+            margin-top: 30px;
+        }
+        
+        .ticket {
+            background: #f8fafc;
             border-radius: 12px;
             padding: 25px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-            border-top: 4px solid var(--primary-color);
+            margin-bottom: 20px;
+            border-right: 5px solid var(--primary-color);
+            transition: all 0.3s;
         }
         
-        .feature-card:hover {
-            transform: translateY(-5px);
+        .ticket:hover {
+            background: #f1f5f9;
+            transform: translateX(-5px);
         }
         
-        .feature-icon {
-            font-size: 2.5rem;
+        .ticket-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 15px;
         }
         
-        .feature-title {
-            font-size: 1.3rem;
-            color: var(--dark-color);
-            margin-bottom: 10px;
+        .ticket-user {
+            font-weight: 700;
+            color: var(--primary-color);
+            font-size: 1.2rem;
         }
         
-        /* تصميم واجهة تيليجرام */
-        .telegram-style {
-            background: linear-gradient(135deg, #0088cc 0%, #00aced 100%);
-            border-radius: 15px;
-            overflow: hidden;
-            margin: 30px 0;
+        .ticket-time {
+            color: #64748b;
+            font-size: 0.9rem;
         }
         
-        .telegram-header {
-            background: rgba(0,0,0,0.1);
+        .ticket-message {
+            margin-bottom: 20px;
+            color: #475569;
+            line-height: 1.7;
+        }
+        
+        .ticket-reply {
+            background: white;
+            border-radius: 10px;
             padding: 20px;
-            color: white;
+            margin-top: 20px;
+            border-right: 5px solid var(--secondary-color);
+        }
+        
+        .reply-header {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 10px;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            font-weight: 700;
         }
         
-        .telegram-body {
-            padding: 25px;
-            background: white;
-            min-height: 400px;
+        /* صفحة الذكاء الاصطناعي */
+        .ai-chat-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .message {
+        .ai-message {
             max-width: 70%;
             margin: 15px 0;
-            padding: 15px;
+            padding: 20px;
             border-radius: 15px;
             position: relative;
         }
         
-        .incoming {
-            background: #e2e8f0;
-            margin-right: auto;
-        }
-        
-        .outgoing {
-            background: #0088cc;
+        .ai-message.user {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
             color: white;
             margin-left: auto;
+            margin-right: 0;
+            border-bottom-right-radius: 5px;
         }
         
-        /* صفحة رسائل الشكر */
-        .testimonials {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
+        .ai-message.bot {
+            background: #f1f5f9;
+            color: var(--dark-color);
+            margin-right: auto;
+            margin-left: 0;
+            border-bottom-left-radius: 5px;
         }
         
-        .testimonial-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-right: 4px solid var(--secondary-color);
-        }
-        
-        .testimonial-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-        
-        .user-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-        
-        /* صفحة الخصوصية */
-        .privacy-content {
-            background: white;
-            border-radius: 15px;
-            padding: 35px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            margin: 20px 0;
-        }
-        
-        .privacy-section {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        
-        .privacy-section:last-child {
-            border-bottom: none;
-            margin-bottom: 0;
-        }
-        
-        /* صفحة حقوق المطورين */
-        .developers-section {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: white;
-            border-radius: 15px;
-            padding: 40px;
-            margin: 20px 0;
-        }
-        
-        /* صفحة تواصل معنا */
-        .contact-section {
-            background: white;
-            border-radius: 15px;
-            padding: 35px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            margin: 20px 0;
-        }
-        
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .contact-method {
+        /* صفحة الاتصال الشخصي */
+        .private-contact {
             text-align: center;
-            padding: 25px;
-            background: #f8fafc;
+            padding: 50px 20px;
+        }
+        
+        .private-contact h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+        
+        /* إشعارات */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            max-width: 400px;
+            padding: 20px;
             border-radius: 12px;
-            transition: transform 0.3s;
-        }
-        
-        .contact-method:hover {
-            transform: translateY(-5px);
-            background: var(--light-color);
-        }
-        
-        .contact-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-        
-        /* تذييل الموقع */
-        .site-footer {
-            background: var(--dark-color);
             color: white;
-            padding: 30px 20px;
-            margin-top: 50px;
-            text-align: center;
+            font-weight: 600;
+            z-index: 1001;
+            animation: slideUp 0.3s ease;
+            display: none;
         }
         
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
+        @keyframes slideUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         
-        .copyright {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #334155;
-            color: #94a3b8;
-            font-size: 0.9rem;
+        .notification.success {
+            background: var(--secondary-color);
         }
         
-        /* التجاوب مع الأجهزة المختلفة */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
+        .notification.error {
+            background: #dc2626;
+        }
+        
+        /* التجاوب */
+        @media (max-width: 1024px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .main-content {
+                margin-right: 0;
+                max-width: 100%;
             }
             
             .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                right: 0;
-                background: var(--dark-color);
-                flex-direction: column;
-                width: 200px;
-                padding: 15px;
-                border-radius: 0 0 10px 10px;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .rainbow-title {
+                font-size: 1.8rem;
             }
             
-            .nav-links.active {
-                display: flex;
+            .main-content {
+                padding: 20px;
             }
             
-            .hero-title {
-                font-size: 2rem;
+            .system-card {
+                padding: 20px;
             }
             
-            .stats-grid {
+            .contact-badges {
                 grid-template-columns: 1fr;
             }
         }
@@ -457,539 +522,670 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- 🔝 الشريط العلوي الجديد - قصير -->
+    <!-- 🔝 الشريط العلوي -->
     <header class="site-header">
         <div class="logo-section">
             <div class="site-logo">
                 <img src="https://cdn-icons-png.flaticon.com/512/1006/1006363.png" alt="شعار دعم المتطوعين">
             </div>
-            <div class="site-name">دعم المتطوعين</div>
+            <div class="rainbow-title">دعم المتطوعين</div>
         </div>
         
         <nav class="nav-menu">
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#" class="active" onclick="showPage('home')"><i class="fas fa-home"></i> الرئيسية</a></li>
-                <li><a href="#" onclick="showPage('problems')"><i class="fas fa-tools"></i> حل المشاكل</a></li>
-                <li><a href="#" onclick="showPage('contact')"><i class="fas fa-comments"></i> تواصل معنا</a></li>
-                <li><a href="#" onclick="showPage('privacy')"><i class="fas fa-shield-alt"></i> الخصوصية</a></li>
-                <li><a href="#" onclick="showPage('developers')"><i class="fas fa-code"></i> حقوق المطورين</a></li>
-                <li><a href="#" onclick="showPage('stats')"><i class="fas fa-chart-line"></i> الإحصائيات</a></li>
-                <li><a href="#" onclick="showPage('testimonials')"><i class="fas fa-star"></i> رسائل الشكر</a></li>
+            <ul class="nav-links">
+                <li><a href="#" class="active" onclick="showPanel('home')"><i class="fas fa-home"></i> الرئيسية</a></li>
+                <li><a href="#" onclick="showPanel('user')"><i class="fas fa-user"></i> تقديم مشكلة</a></li>
+                <li><a href="#" onclick="showPanel('admin')"><i class="fas fa-headset"></i> لوحة المشرف</a></li>
+                <li><a href="#" onclick="showPanel('ai')"><i class="fas fa-robot"></i> الذكاء الاصطناعي</a></li>
+                <li><a href="#" onclick="showPanel('contact')"><i class="fas fa-envelope"></i> اتصل بي شخصياً</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- بطاقة الإحصائيات الكبيرة -->
-    <div class="main-container">
-        <div class="stats-card">
-            <div class="stats-title">📊 إنجازات منصتنا</div>
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">1,245,387</div>
-                    <div class="stat-label">مستخدم نشط</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">89,452</div>
-                    <div class="stat-label">مشكلة تم حلها</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">24,789</div>
-                    <div class="stat-label">متطوع نشط</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">99.2%</div>
-                    <div class="stat-label">رضا المستخدمين</div>
-                </div>
+    <!-- 🔵 الشريط الجانبي -->
+    <aside class="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-title">
+                <i class="fas fa-trophy"></i>
+                إنجازات المنصة
+            </div>
+            
+            <div class="stats-item">
+                <span class="stat-label">👥 المستخدمون النشطون</span>
+                <span class="stat-value">1,245,387</span>
+            </div>
+            
+            <div class="stats-item">
+                <span class="stat-label">✅ المشاكل المحلولة</span>
+                <span class="stat-value">89,452</span>
+            </div>
+            
+            <div class="stats-item">
+                <span class="stat-label">🛠️ المتطوعون النشطون</span>
+                <span class="stat-value">24,789</span>
+            </div>
+            
+            <div class="stats-item">
+                <span class="stat-label">⭐ تقييم المستخدمين</span>
+                <span class="stat-value">4.9/5</span>
+            </div>
+            
+            <div class="stats-item">
+                <span class="stat-label">🚀 سرعة الاستجابة</span>
+                <span class="stat-value">2.3 د</span>
             </div>
         </div>
+        
+        <div class="sidebar-section">
+            <div class="sidebar-title">
+                <i class="fas fa-link"></i>
+                تواصل معنا
+            </div>
+            
+            <div class="contact-badges">
+                <a href="https://wa.me/9647876459282" target="_blank" class="contact-badge">
+                    <div class="contact-icon" style="background: rgba(37, 211, 102, 0.2); color: #25D366;">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-name">واتساب</div>
+                </a>
+                
+                <a href="https://t.me/S2upport_group" target="_blank" class="contact-badge">
+                    <div class="contact-icon" style="background: rgba(0, 136, 204, 0.2); color: #0088cc;">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <div class="contact-name">تليجرام</div>
+                </a>
+                
+                <a href="https://www.facebook.com/hdjejeikkekek" target="_blank" class="contact-badge">
+                    <div class="contact-icon" style="background: rgba(24, 119, 242, 0.2); color: #1877F2;">
+                        <i class="fab fa-facebook"></i>
+                    </div>
+                    <div class="contact-name">فيسبوك</div>
+                </a>
+                
+                <a href="mailto:oo.9ee9@gmail.com" class="contact-badge">
+                    <div class="contact-icon" style="background: rgba(234, 67, 53, 0.2); color: #EA4335;">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-name">البريد</div>
+                </a>
+                
+                <a href="#" onclick="showPanel('contact')" class="contact-badge">
+                    <div class="contact-icon" style="background: rgba(139, 92, 246, 0.2); color: #8B5CF6;">
+                        <i class="fas fa-comment-dots"></i>
+                    </div>
+                    <div class="contact-name">محادثة خاصة</div>
+                </a>
+                
+                <a href="#" onclick="showPanel('ai')" class="contact-badge">
+                    <div class="contact-icon" style="background: rgba(16, 185, 129, 0.2); color: #10B981;">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="contact-name">ذكاء اصطناعي</div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="sidebar-section">
+            <div class="sidebar-title">
+                <i class="fas fa-info-circle"></i>
+                معلومات سريعة
+            </div>
+            <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.6;">
+                ✅ الرد خلال 24 ساعة<br>
+                ✅ دعم مجاني 100%<br>
+                ✅ خصوصية تامة<br>
+                ✅ فريق متطوعين عربي<br>
+                ✅ دعم تقني متكامل
+            </p>
+        </div>
+    </aside>
 
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
         <!-- الصفحة الرئيسية -->
-        <div id="home" class="page active">
-            <div class="hero-section">
-                <h1 class="hero-title">مرحباً بك في منصة دعم المتطوعين</h1>
-                <p class="hero-subtitle">منصة عربية متكاملة لتقديم الدعم الفني والتقني من قبل متطوعين متخصصين. نحن هنا لمساعدتك في حل أي مشكلة تواجهك.</p>
+        <div id="home" class="panel-container active">
+            <div class="system-card">
+                <div class="card-header">
+                    <i class="fas fa-hands-helping"></i>
+                    <h2>مرحباً بك في منصة دعم المتطوعين</h2>
+                </div>
                 
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">🚀</div>
-                        <h3 class="feature-title">دعم فوري</h3>
-                        <p>احصل على مساعدة فورية من متطوعين متخصصين في مختلف المجالات التقنية.</p>
+                <p style="font-size: 1.2rem; color: #475569; margin-bottom: 25px;">
+                    منصة عربية متكاملة تجمع بين الخبراء التقنيين والمستخدمين لتقديم حلول سريعة وفعالة.
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 40px;">
+                    <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 25px; border-radius: 12px;">
+                        <h3 style="color: #0369a1; margin-bottom: 15px;"><i class="fas fa-user-check"></i> للمستخدمين</h3>
+                        <p>قدم مشكلتك التقنية وسيحلها فريق من المتطوعين المتخصصين مجاناً.</p>
+                        <button class="btn btn-primary" onclick="showPanel('user')" style="margin-top: 15px;">
+                            <i class="fas fa-paper-plane"></i> قدم مشكلتك الآن
+                        </button>
                     </div>
                     
-                    <div class="feature-card">
-                        <div class="feature-icon">👥</div>
-                        <h3 class="feature-title">مجتمع متعاون</h3>
-                        <p>انضم إلى مجتمع من المتطوعين والمستخدمين الذين يساعدون بعضهم البعض.</p>
+                    <div style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 25px; border-radius: 12px;">
+                        <h3 style="color: #059669; margin-bottom: 15px;"><i class="fas fa-user-tie"></i> للمشرفين</h3>
+                        <p>ادخل لوحة التحكم للرد على مشاكل المستخدمين وإدارة المحادثات.</p>
+                        <button class="btn btn-secondary" onclick="showPanel('admin')" style="margin-top: 15px;">
+                            <i class="fas fa-headset"></i> دخول المشرف
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="system-card">
+                <div class="card-header">
+                    <i class="fas fa-bolt"></i>
+                    <h2>مميزات المنصة</h2>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="font-size: 2.5rem; color: #4f46e5; margin-bottom: 15px;">⚡</div>
+                        <h3 style="color: #334155;">سرعة الرد</h3>
+                        <p style="color: #64748b;">رد فوري خلال دقائق معدودة</p>
                     </div>
                     
-                    <div class="feature-card">
-                        <div class="feature-icon">🛡️</div>
-                        <h3 class="feature-title">خصوصية تامة</h3>
-                        <p>بياناتك محمية بنظام خصوصية متطور ونحن نحترم سرية معلوماتك.</p>
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="font-size: 2.5rem; color: #059669; margin-bottom: 15px;">🛡️</div>
+                        <h3 style="color: #334155;">خصوصية كاملة</h3>
+                        <p style="color: #64748b;">بياناتك محمية بنظام تشفير متقدم</p>
+                    </div>
+                    
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="font-size: 2.5rem; color: #7c3aed; margin-bottom: 15px;">👥</div>
+                        <h3 style="color: #334155;">مجتمع متعاون</h3>
+                        <p style="color: #64748b;">أكثر من 24 ألف متطوع عربي</p>
+                    </div>
+                    
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="font-size: 2.5rem; color: #f59e0b; margin-bottom: 15px;">🎯</div>
+                        <h3 style="color: #334155;">دعم متكامل</h3>
+                        <p style="color: #64748b;">جميع المجالات التقنية</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- صفحة حل المشاكل -->
-        <div id="problems" class="page">
-            <div class="hero-section">
-                <h1 class="hero-title">🔧 واجهة حل المشاكل</h1>
-                <p class="hero-subtitle">صممنا واجهة سهلة ومبسطة لتقديم المشاكل والحصول على الحلول المناسبة</p>
-            </div>
-            
-            <div class="telegram-style">
-                <div class="telegram-header">
-                    <i class="fab fa-telegram" style="font-size: 1.5rem;"></i>
-                    <h3 style="margin: 0;">دعم فني - فريق المتطوعين</h3>
+        <!-- واجهة المستخدم -->
+        <div id="user" class="panel-container">
+            <div class="system-card">
+                <div class="card-header">
+                    <i class="fas fa-user-plus"></i>
+                    <h2>تقديم مشكلة جديدة</h2>
                 </div>
                 
-                <div class="telegram-body">
-                    <div class="message incoming">
-                        <strong>المستخدم:</strong> مرحباً، لدي مشكلة في تسجيل الدخول إلى الموقع
+                <form id="userForm">
+                    <div class="form-group">
+                        <label for="userName"><i class="fas fa-user"></i> اسمك الكامل:</label>
+                        <input type="text" id="userName" class="form-control" placeholder="أدخل اسمك الثلاثي" required>
                     </div>
                     
-                    <div class="message outgoing">
-                        <strong>فريق الدعم:</strong> أهلاً بك! هل يمكنك إخباري بالرسالة التي تظهر لك؟
+                    <div class="form-group">
+                        <label for="userEmail"><i class="fas fa-envelope"></i> بريدك الإلكتروني:</label>
+                        <input type="email" id="userEmail" class="form-control" placeholder="example@email.com" required>
                     </div>
                     
-                    <div class="message incoming">
-                        <strong>المستخدم:</strong> تظهر لي رسالة "كلمة المرور غير صحيحة"
+                    <div class="form-group">
+                        <label for="issueType"><i class="fas fa-tag"></i> نوع المشكلة:</label>
+                        <select id="issueType" class="form-control">
+                            <option value="technical">مشكلة تقنية</option>
+                            <option value="website">مشكلة في موقع ويب</option>
+                            <option value="mobile">مشكلة في تطبيق جوال</option>
+                            <option value="database">مشكلة في قاعدة بيانات</option>
+                            <option value="other">أخرى</option>
+                        </select>
                     </div>
                     
-                    <div class="message outgoing">
-                        <strong>فريق الدعم:</strong> جرب استخدام زر "نسيت كلمة المرور" أو تواصل معنا على البريد الإلكتروني
+                    <div class="form-group">
+                        <label for="userIssue"><i class="fas fa-comment-dots"></i> وصف المشكلة:</label>
+                        <textarea id="userIssue" class="form-control" placeholder="صف مشكلتك بتفصيل... ما الذي حدث؟ متى بدأت المشكلة؟ ما هي الرسائل التي تظهر؟" required></textarea>
                     </div>
                     
-                    <div class="message incoming">
-                        <strong>المستخدم:</strong> شكراً جزيلاً، المشكلة تم حلها بنجاح!
-                    </div>
-                </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> إرسال المشكلة
+                    </button>
+                </form>
             </div>
             
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3 class="feature-title">مشاكل شائعة</h3>
-                    <ul style="padding-right: 20px;">
-                        <li style="margin-bottom: 10px;">مشاكل تسجيل الدخول</li>
-                        <li style="margin-bottom: 10px;">مشاكل في الملفات الشخصية</li>
-                        <li style="margin-bottom: 10px;">استعادة كلمات المرور</li>
-                        <li style="margin-bottom: 10px;">مشاكل تقنية عامة</li>
-                    </ul>
+            <div class="system-card">
+                <div class="card-header">
+                    <i class="fas fa-history"></i>
+                    <h2>مشاكلي السابقة</h2>
                 </div>
                 
-                <div class="feature-card">
-                    <h3 class="feature-title">كيف نقدم الدعم؟</h3>
-                    <p>1. قدم مشكلتك بوضوح</p>
-                    <p>2. انتظر رد المتطوعين</p>
-                    <p>3. تابع الحلول المقترحة</p>
-                    <p>4. أخبرنا إذا تم حل المشكلة</p>
+                <div class="tickets-container" id="userTicketsList">
+                    <!-- سيتم ملؤها بالجافاسكريبت -->
                 </div>
             </div>
         </div>
 
-        <!-- صفحة تواصل معنا -->
-        <div id="contact" class="page">
-            <div class="hero-section">
-                <h1 class="hero-title">📞 تواصل معنا</h1>
-                <p class="hero-subtitle">نحن هنا للإجابة على استفساراتك ومساعدتك في أي وقت</p>
-            </div>
-            
-            <div class="contact-section">
-                <div class="contact-grid">
-                    <div class="contact-method">
-                        <div class="contact-icon">📧</div>
-                        <h3>البريد الإلكتروني</h3>
-                        <p>support@volunteer-help.com</p>
-                        <p>للشكاوى والمقترحات: oo.9ee9@gmail.com</p>
-                    </div>
+        <!-- واجهة المشرف -->
+        <div id="admin" class="panel-container">
+            <div class="system-card">
+                <div class="card-header">
+                    <i class="fas fa-user-tie"></i>
+                    <h2>لوحة تحكم المشرف</h2>
+                </div>
+                
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: #334155; margin-bottom: 20px;"><i class="fas fa-list"></i> جميع المشاكل المفتوحة</h3>
                     
-                    <div class="contact-method">
-                        <div class="contact-icon">💬</div>
-                        <h3>واتساب</h3>
-                        <p>+964 787 645 9282</p>
-                        <p>متاح من 9 صباحاً حتى 10 مساءً</p>
-                    </div>
-                    
-                    <div class="contact-method">
-                        <div class="contact-icon">📱</div>
-                        <h3>تيليجرام</h3>
-                        <p>@volunteer_support</p>
-                        <p>قناة الدعم الفوري</p>
-                    </div>
-                    
-                    <div class="contact-method">
-                        <div class="contact-icon">🌐</div>
-                        <h3>فيسبوك</h3>
-                        <p>facebook.com/volunteersupport</p>
-                        <p>تابعنا لأحدث الأخبار</p>
+                    <div class="tickets-container" id="adminTicketsList">
+                        <!-- سيتم ملؤها بالجافاسكريبت -->
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- صفحة الخصوصية -->
-        <div id="privacy" class="page">
-            <div class="hero-section">
-                <h1 class="hero-title">🛡️ سياسة الخصوصية</h1>
-                <p class="hero-subtitle">نحن نحمي خصوصيتك وبياناتك الشخصية</p>
-            </div>
-            
-            <div class="privacy-content">
-                <div class="privacy-section">
-                    <h3>1. معلومات نجمّعها</h3>
-                    <p>نقوم بجمع المعلومات التي تقدمها لنا مباشرة عند استخدام المنصة، مثل اسمك، بريدك الإلكتروني، والمشاكل التي تقدمها.</p>
+        <!-- صفحة الذكاء الاصطناعي -->
+        <div id="ai" class="panel-container">
+            <div class="system-card">
+                <div class="card-header">
+                    <i class="fas fa-robot"></i>
+                    <h2>محادثة مع الذكاء الاصطناعي</h2>
                 </div>
                 
-                <div class="privacy-section">
-                    <h3>2. كيفية استخدام المعلومات</h3>
-                    <p>نستخدم معلوماتك لتقديم خدمات الدعم، تحسين تجربتك، والرد على استفساراتك. نحن لا نبيع أو نؤجر معلوماتك الشخصية لأطراف ثالثة.</p>
-                </div>
-                
-                <div class="privacy-section">
-                    <h3>3. حماية البيانات</h3>
-                    <p>نستخدم تقنيات تشفير متقدمة لحماية بياناتك. جميع البيانات مخزنة على خوادم آمنة مع تدابير أمان صارمة.</p>
-                </div>
-                
-                <div class="privacy-section">
-                    <h3>4. ملفات تعريف الارتباط (Cookies)</h3>
-                    <p>نستخدم ملفات تعريف الارتباط لتحسين تجربة التصفح وتذكر تفضيلاتك. يمكنك تعطيلها من إعدادات المتصفح.</p>
-                </div>
-                
-                <div class="privacy-section">
-                    <h3>5. حقوقك</h3>
-                    <p>لديك الحق في الوصول إلى بياناتك الشخصية، تصحيحها، أو حذفها. يمكنك ممارسة هذه الحقوق من خلال التواصل معنا.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- صفحة حقوق المطورين -->
-        <div id="developers" class="page">
-            <div class="hero-section">
-                <h1 class="hero-title">👨‍💻 حقوق المطورين والموقع</h1>
-                <p class="hero-subtitle">شكراً لكل من ساهم في بناء وتطوير هذه المنصة</p>
-            </div>
-            
-            <div class="developers-section">
-                <h2 style="text-align: center; margin-bottom: 30px; color: white;">فريق التطوير والقيادة</h2>
-                
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h3 class="feature-title">المطور حيدر ستار</h3>
-                        <p>مطور الواجهات الأمامية والخلفية</p>
-                        <p>مؤسس منصة دعم المتطوعين</p>
-                        <p>خبرة 8 سنوات في البرمجة</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h3 class="feature-title">المطور علي</h3>
-                        <p>مختص بقواعد البيانات والأمان</p>
-                        <p>مسؤول عن حماية البيانات</p>
-                        <p>خبرة 6 سنوات في الأمن السيبراني</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <h3 class="feature-title">فريق المتطوعين</h3>
-                        <p>أكثر من 50 متطوع تقني</p>
-                        <p>دعم على مدار الساعة</p>
-                        <p>متخصصون في مجالات متنوعة</p>
-                    </div>
-                </div>
-                
-                <div style="text-align: center; margin-top: 30px;">
-                    <h3>© 2023 جميع الحقوق محفوظة لمنصة دعم المتطوعين</h3>
-                    <p>يُحظر نسخ أو إعادة توزيع أي جزء من هذه المنصة دون إذن كتابي مسبق.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- صفحة الإحصائيات -->
-        <div id="stats" class="page">
-            <div class="hero-section">
-                <h1 class="hero-title">📈 إحصائيات المنصة</h1>
-                <p class="hero-subtitle">أرقام حقيقية تعكس نجاح وتفاعل مجتمعنا</p>
-            </div>
-            
-            <div class="stats-card" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%);">
-                <div class="stats-title">🔥 تفاعل المستخدمين</div>
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number">3.2M+</div>
-                        <div class="stat-label">زيارة شهرياً</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">45,789</div>
-                        <div class="stat-label">مشكلة جديدة أسبوعياً</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">98.7%</div>
-                        <div class="stat-label">مشاكل تم حلها</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">4.8/5</div>
-                        <div class="stat-label">تقييم المستخدمين</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="text-align: center; margin: 40px 0;">
-                <h2>📅 نشاط الشهر الحالي</h2>
-                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
-                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                        <h3>المستخدمون الجدد</h3>
-                        <div style="font-size: 2.5rem; font-weight: bold; color: #4f46e5;">+12,458</div>
-                    </div>
-                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                        <h3>المتطوعون الجدد</h3>
-                        <div style="font-size: 2.5rem; font-weight: bold; color: #059669;">+892</div>
-                    </div>
-                    <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05);">
-                        <h3>ساعات الدعم</h3>
-                        <div style="font-size: 2.5rem; font-weight: bold; color: #7c3aed;">18,745</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- صفحة رسائل الشكر -->
-        <div id="testimonials" class="page">
-            <div class="hero-section">
-                <h1 class="hero-title">⭐ رسائل الشكر والتقدير</h1>
-                <p class="hero-subtitle">ما يقوله مستخدمونا عن المنصة وفريق الدعم</p>
-            </div>
-            
-            <div class="testimonials">
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="user-avatar">أ</div>
-                        <div>
-                            <h4 style="margin: 0;">أحمد محمد</h4>
-                            <small style="color: #64748b;">منذ 3 أيام</small>
+                <div class="ai-chat-container">
+                    <div id="aiChatMessages" style="min-height: 400px; max-height: 500px; overflow-y: auto; padding: 20px; background: #f8fafc; border-radius: 12px; margin-bottom: 20px;">
+                        <div class="ai-message bot">
+                            <strong>🤖 مساعد الدعم:</strong> مرحباً! أنا مساعد الذكاء الاصطناعي لمنصة دعم المتطوعين. كيف يمكنني مساعدتك اليوم؟
                         </div>
                     </div>
-                    <p>"شكراً جزيلاً لفريق الدعم، خاصة المطور حيدر. لقد ساعدوني في حل مشكلة معقدة كانت تؤرقني لأسبوعين. أنتم الأفضل!"</p>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="user-avatar">س</div>
-                        <div>
-                            <h4 style="margin: 0;">سارة خالد</h4>
-                            <small style="color: #64748b;">منذ أسبوع</small>
-                        </div>
+                    
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="aiInput" class="form-control" placeholder="اكتب رسالتك هنا..." style="flex: 1;">
+                        <button class="btn btn-primary" onclick="sendAIMessage()">
+                            <i class="fas fa-paper-plane"></i> إرسال
+                        </button>
                     </div>
-                    <p>"ما شاء الله تبارك الله، منصة رائعة وفريق دعم محترف. ردوا على استفساري خلال دقائق وحلوا مشكلتي. ألف شكر للمطور علي وفريق المتطوعين."</p>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="user-avatar">م</div>
-                        <div>
-                            <h4 style="margin: 0;">محمد علي</h4>
-                            <small style="color: #64748b;">منذ 5 أيام</small>
-                        </div>
+                    
+                    <div style="margin-top: 20px; text-align: center; color: #64748b;">
+                        <small><i class="fas fa-info-circle"></i> المساعد يتعلم من كل محادثة لتحسين خدماته</small>
                     </div>
-                    <p>"لم أتوقع أن أجد منصة مجانية بهذا المستوى من الاحترافية. فريق الدعم متعاون جداً ويعملون بجد. وفقكم الله وسدد خطاكم."</p>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="user-avatar">ف</div>
-                        <div>
-                            <h4 style="margin: 0;">فاطمة حسن</h4>
-                            <small style="color: #64748b;">منذ يومين</small>
-                        </div>
-                    </div>
-                    <p>"أشكر كل من ساهم في هذه المنصة الرائعة. خاصة المطور حيدر والمطور علي. جعلتم عملية طلب المساعدة سهلة وسريعة. أحسنتُم!"</p>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="user-avatar">خ</div>
-                        <div>
-                            <h4 style="margin: 0;">خالد وليد</h4>
-                            <small style="color: #64748b;">منذ 4 أيام</small>
-                        </div>
-                    </div>
-                    <p>"أفضل منصة دعم عربية على الإطلاق. التفاعل كبير والحلول سريعة. شكراً لكل المتطوعين الذين يبذلون جهودهم لمساعدة الآخرين."</p>
-                </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-header">
-                        <div class="user-avatar">ن</div>
-                        <div>
-                            <h4 style="margin: 0;">نورا سعد</h4>
-                            <small style="color: #64748b;">منذ أسبوع</small>
-                        </div>
-                    </div>
-                    <p>"بصراحة تفاجأت بالإقبال الكبير على المنصة وجودة الخدمة. شكراً للمطورين والمتطوعين. جعلتمونا نثق في العمل التطوعي العربي."</p>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- تذييل الموقع -->
-    <footer class="site-footer">
-        <div class="footer-content">
-            <h2>دعم المتطوعين</h2>
-            <p>منصة عربية مجانية لتقديم الدعم التقني والفني</p>
-            
-            <div style="display: flex; justify-content: center; gap: 20px; margin: 25px 0; flex-wrap: wrap;">
-                <a href="#" onclick="showPage('home')" style="color: white; text-decoration: none;">الرئيسية</a>
-                <a href="#" onclick="showPage('problems')" style="color: white; text-decoration: none;">حل المشاكل</a>
-                <a href="#" onclick="showPage('contact')" style="color: white; text-decoration: none;">تواصل معنا</a>
-                <a href="#" onclick="showPage('privacy')" style="color: white; text-decoration: none;">الخصوصية</a>
-                <a href="#" onclick="showPage('developers')" style="color: white; text-decoration: none;">حقوق المطورين</a>
-            </div>
-            
-            <div class="copyright">
-                © 2023 جميع الحقوق محفوظة لمنصة دعم المتطوعين | تم التطوير بواسطة المطور حيدر ستار والمطور علي
-                <p style="margin-top: 10px;">البريد: oo.9ee9@gmail.com | واتساب: 07876459282</p>
+        <!-- صفحة الاتصال الشخصي -->
+        <div id="contact" class="panel-container">
+            <div class="system-card">
+                <div class="card-header">
+                    <i class="fas fa-comment-medical"></i>
+                    <h2>اتصل بي شخصياً</h2>
+                </div>
+                
+                <div class="private-contact">
+                    <div style="font-size: 5rem; color: #4f46e5; margin-bottom: 20px;">
+                        <i class="fas fa-user-secret"></i>
+                    </div>
+                    
+                    <h3>محادثة خاصة مع المطور</h3>
+                    <p style="color: #64748b; max-width: 600px; margin: 20px auto;">
+                        هذه الصفحة للتواصل الشخصي معي فقط. لن يتم عرض رسائلك للمستخدمين الآخرين.
+                        يمكنك مراسلتي مباشرة وسأرد عليك خلال 24 ساعة.
+                    </p>
+                    
+                    <div style="max-width: 500px; margin: 30px auto;">
+                        <div class="form-group">
+                            <label for="privateMessage"><i class="fas fa-envelope"></i> رسالتك الشخصية:</label>
+                            <textarea id="privateMessage" class="form-control" rows="6" placeholder="اكتب رسالتك الخاصة هنا..."></textarea>
+                        </div>
+                        
+                        <button class="btn btn-primary" onclick="sendPrivateMessage()" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i> إرسال رسالة خاصة
+                        </button>
+                    </div>
+                    
+                    <div style="margin-top: 40px; padding: 20px; background: #f0f9ff; border-radius: 12px;">
+                        <h4><i class="fas fa-clock"></i> أوقات الاستجابة</h4>
+                        <p style="color: #475569;">الرد خلال 24 ساعة كحد أقصى</p>
+                        
+                        <div style="display: flex; justify-content: center; gap: 30px; margin-top: 20px; flex-wrap: wrap;">
+                            <div style="text-align: center;">
+                                <div style="font-size: 2rem; color: #25D366;"><i class="fab fa-whatsapp"></i></div>
+                                <div style="font-weight: 600;">واتساب</div>
+                                <div>07876459282</div>
+                            </div>
+                            
+                            <div style="text-align: center;">
+                                <div style="font-size: 2rem; color: #0088cc;"><i class="fab fa-telegram"></i></div>
+                                <div style="font-weight: 600;">تليجرام</div>
+                                <div>@S2upport_group</div>
+                            </div>
+                            
+                            <div style="text-align: center;">
+                                <div style="font-size: 2rem; color: #EA4335;"><i class="fas fa-envelope"></i></div>
+                                <div style="font-weight: 600;">البريد</div>
+                                <div>oo.9ee9@gmail.com</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </footer>
+    </main>
+
+    <!-- إشعارات -->
+    <div id="notification" class="notification"></div>
 
     <script>
-        // التحكم بين الصفحات
-        function showPage(pageId) {
-            // إخفاء جميع الصفحات
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
+        // تخزين البيانات
+        let tickets = JSON.parse(localStorage.getItem('supportTickets')) || [];
+        let currentUser = null;
+        
+        // تهيئة الموقع
+        document.addEventListener('DOMContentLoaded', function() {
+            loadUserTickets();
+            loadAllTickets();
+            
+            // تخصيص إشعارات
+            showNotification('مرحباً بك في منصة دعم المتطوعين! 👋', 'success');
+        });
+        
+        // عرض لوحة معينة
+        function showPanel(panelId) {
+            // إخفاء جميع اللوحات
+            document.querySelectorAll('.panel-container').forEach(panel => {
+                panel.classList.remove('active');
             });
             
-            // إظهار الصفحة المطلوبة
-            document.getElementById(pageId).classList.add('active');
-            
-            // تحديث القائمة النشطة
+            // إزالة النشاط من جميع الروابط
             document.querySelectorAll('.nav-links a').forEach(link => {
                 link.classList.remove('active');
             });
             
-            // إضافة النشاط للرابط المناسب
-            const activeLink = Array.from(document.querySelectorAll('.nav-links a')).find(link => {
-                return link.getAttribute('onclick')?.includes(pageId);
-            });
+            // إظهار اللوحة المطلوبة
+            document.getElementById(panelId).classList.add('active');
+            
+            // تفعيل الرابط النشط
+            const activeLink = Array.from(document.querySelectorAll('.nav-links a')).find(link => 
+                link.getAttribute('onclick')?.includes(panelId)
+            );
             
             if (activeLink) {
                 activeLink.classList.add('active');
             }
             
-            // إغلاق القائمة على الهواتف
-            if (window.innerWidth <= 768) {
-                document.getElementById('navLinks').classList.remove('active');
+            // تحديث البيانات إذا لزم الأمر
+            if (panelId === 'user') {
+                loadUserTickets();
+            } else if (panelId === 'admin') {
+                loadAllTickets();
             }
-            
-            // التمرير للأعلى
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
-        // قائمة الهامبرغر
-        document.getElementById('hamburger').addEventListener('click', function() {
-            document.getElementById('navLinks').classList.toggle('active');
+        // تقديم مشكلة جديدة
+        document.getElementById('userForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const userName = document.getElementById('userName').value;
+            const userEmail = document.getElementById('userEmail').value;
+            const issueType = document.getElementById('issueType').value;
+            const userIssue = document.getElementById('userIssue').value;
+            
+            const newTicket = {
+                id: Date.now(),
+                user: userName,
+                email: userEmail,
+                issue: userIssue,
+                type: issueType,
+                status: 'open',
+                timestamp: new Date().toLocaleString('ar-SA'),
+                replies: []
+            };
+            
+            tickets.push(newTicket);
+            saveTickets();
+            
+            showNotification('✅ تم إرسال مشكلتك بنجاح! سيتم الرد عليك قريباً.', 'success');
+            
+            // إعادة تعيين النموذج
+            document.getElementById('userForm').reset();
+            loadUserTickets();
+            
+            currentUser = userName;
         });
         
-        // إغلاق القائمة عند النقر خارجها
-        document.addEventListener('click', function(event) {
-            const navLinks = document.getElementById('navLinks');
-            const hamburger = document.getElementById('hamburger');
+        // تحميل مشاكل المستخدم
+        function loadUserTickets() {
+            const userName = document.getElementById('userName')?.value || currentUser;
+            const container = document.getElementById('userTicketsList');
             
-            if (!hamburger.contains(event.target) && !navLinks.contains(event.target)) {
-                navLinks.classList.remove('active');
+            if (!userName || tickets.length === 0) {
+                container.innerHTML = '<div style="text-align: center; padding: 40px; color: #64748b;">لم تقم بإرسال أي مشاكل بعد.</div>';
+                return;
             }
-        });
+            
+            const userTickets = tickets.filter(ticket => ticket.user === userName);
+            
+            if (userTickets.length === 0) {
+                container.innerHTML = '<div style="text-align: center; padding: 40px; color: #64748b;">لم تقم بإرسال أي مشاكل بعد.</div>';
+                return;
+            }
+            
+            container.innerHTML = userTickets.map(ticket => `
+                <div class="ticket">
+                    <div class="ticket-header">
+                        <div class="ticket-user">${ticket.user}</div>
+                        <div class="ticket-time">${ticket.timestamp}</div>
+                    </div>
+                    <div class="ticket-message">
+                        <strong>نوع المشكلة:</strong> ${getIssueTypeText(ticket.type)}<br><br>
+                        ${ticket.issue}
+                    </div>
+                    ${ticket.replies.length > 0 ? ticket.replies.map(reply => `
+                        <div class="ticket-reply">
+                            <div class="reply-header">
+                                <i class="fas fa-user-tie"></i> رد المشرف
+                                <span style="font-size: 0.9rem; color: #64748b; margin-right: auto;">
+                                    ${reply.timestamp}
+                                </span>
+                            </div>
+                            <div>${reply.message}</div>
+                        </div>
+                    `).join('') : '<div style="text-align: center; padding: 15px; color: #64748b; background: #f1f5f9; border-radius: 8px;">لا توجد ردود بعد...</div>'}
+                </div>
+            `).join('');
+        }
         
-        // إضافة رسائل وهمية تلقائياً
-        function addTestimonial() {
-            const testimonials = [
-                {name: "يوسف أحمد", initial: "ي", text: "منصة مذهلة! حلت لي مشكلة كنت أعاني منها منذ شهور. شكراً لفريق الدعم."},
-                {name: "ريم عبدالله", initial: "ر", text: "تجربة رائعة مع المتطوعين. متفهمين وصبورين. بارك الله في جهودكم."},
-                {name: "عبدالرحمن خالد", initial: "ع", text: "المطور حيدر بطل! رد على استفساري في منتصف الليل. إحترافية عالية."},
-                {name: "ليندا سمير", initial: "ل", text: "أول مرة أتعامل مع منصة عربية بهذه الجودة. تستحقون 5 نجوم بجدارة."}
-            ];
+        // تحميل جميع المشاكل للمشرف
+        function loadAllTickets() {
+            const container = document.getElementById('adminTicketsList');
             
-            const container = document.querySelector('.testimonials');
-            if (!container) return;
+            if (tickets.length === 0) {
+                container.innerHTML = '<div style="text-align: center; padding: 40px; color: #64748b;">لا توجد مشاكل من المستخدمين بعد.</div>';
+                return;
+            }
             
-            // إضافة رسالة جديدة كل 10 ثواني (للتجربة فقط)
-            setInterval(() => {
-                const randomTestimonial = testimonials[Math.floor(Math.random() * testimonials.length)];
-                
-                const testimonialCard = document.createElement('div');
-                testimonialCard.className = 'testimonial-card';
-                testimonialCard.innerHTML = `
-                    <div class="testimonial-header">
-                        <div class="user-avatar">${randomTestimonial.initial}</div>
-                        <div>
-                            <h4 style="margin: 0;">${randomTestimonial.name}</h4>
-                            <small style="color: #64748b;">الآن</small>
+            container.innerHTML = tickets.map(ticket => `
+                <div class="ticket">
+                    <div class="ticket-header">
+                        <div class="ticket-user">👤 ${ticket.user}</div>
+                        <div style="display: flex; gap: 10px; align-items: center;">
+                            <span style="background: ${ticket.status === 'open' ? '#fef3c7' : '#d1fae5'}; color: ${ticket.status === 'open' ? '#92400e' : '#059669'}; padding: 5px 15px; border-radius: 20px; font-size: 0.9rem;">
+                                ${ticket.status === 'open' ? 'مفتوح' : 'تم الرد'}
+                            </span>
+                            <span class="ticket-time">${ticket.timestamp}</span>
                         </div>
                     </div>
-                    <p>"${randomTestimonial.text}"</p>
+                    <div class="ticket-message">
+                        <strong>📧 البريد:</strong> ${ticket.email}<br>
+                        <strong>🏷️ النوع:</strong> ${getIssueTypeText(ticket.type)}<br><br>
+                        ${ticket.issue}
+                    </div>
+                    
+                    ${ticket.replies.length > 0 ? ticket.replies.map(reply => `
+                        <div class="ticket-reply">
+                            <div class="reply-header">
+                                <i class="fas fa-user-tie"></i> ردك السابق
+                                <span style="font-size: 0.9rem; color: #64748b; margin-right: auto;">
+                                    ${reply.timestamp}
+                                </span>
+                            </div>
+                            <div>${reply.message}</div>
+                        </div>
+                    `).join('') : ''}
+                    
+                    <div style="margin-top: 20px;">
+                        <textarea id="reply-${ticket.id}" class="form-control" placeholder="اكتب ردك هنا..." rows="3"></textarea>
+                        <button class="btn btn-secondary" onclick="replyToTicket(${ticket.id})" style="margin-top: 10px;">
+                            <i class="fas fa-reply"></i> إرسال الرد
+                        </button>
+                        ${ticket.status === 'open' ? `
+                            <button class="btn" onclick="closeTicket(${ticket.id})" style="margin-top: 10px; background: #f1f5f9; color: #475569;">
+                                <i class="fas fa-check"></i> إغلاق المشكلة
+                            </button>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // الرد على مشكلة
+        function replyToTicket(ticketId) {
+            const replyText = document.getElementById(`reply-${ticketId}`).value;
+            
+            if (!replyText.trim()) {
+                showNotification('❌ يرجى كتابة رد قبل الإرسال.', 'error');
+                return;
+            }
+            
+            const ticket = tickets.find(t => t.id === ticketId);
+            
+            if (ticket) {
+                ticket.replies.push({
+                    message: replyText,
+                    timestamp: new Date().toLocaleString('ar-SA'),
+                    admin: 'المشرف'
+                });
+                
+                ticket.status = 'answered';
+                saveTickets();
+                
+                showNotification('✅ تم إرسال ردك بنجاح!', 'success');
+                document.getElementById(`reply-${ticketId}`).value = '';
+                
+                loadAllTickets();
+            }
+        }
+        
+        // إغلاق مشكلة
+        function closeTicket(ticketId) {
+            const ticket = tickets.find(t => t.id === ticketId);
+            
+            if (ticket) {
+                ticket.status = 'answered';
+                saveTickets();
+                
+                showNotification('✅ تم إغلاق المشكلة.', 'success');
+                loadAllTickets();
+            }
+        }
+        
+        // إرسال رسالة خاصة
+        function sendPrivateMessage() {
+            const message = document.getElementById('privateMessage').value;
+            
+            if (!message.trim()) {
+                showNotification('❌ يرجى كتابة رسالة.', 'error');
+                return;
+            }
+            
+            // في الواقع، هنا سترسل الرسالة إلى البريد الإلكتروني أو قاعدة البيانات
+            // لكن سنكتفي بإشعار للمستخدم
+            
+            showNotification('📩 تم إرسال رسالتك الخاصة بنجاح! سأرد عليك خلال 24 ساعة.', 'success');
+            document.getElementById('privateMessage').value = '';
+        }
+        
+        // محادثة الذكاء الاصطناعي
+        function sendAIMessage() {
+            const input = document.getElementById('aiInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            const chatContainer = document.getElementById('aiChatMessages');
+            
+            // إضافة رسالة المستخدم
+            chatContainer.innerHTML += `
+                <div class="ai-message user">
+                    <strong>👤 أنت:</strong> ${message}
+                </div>
+            `;
+            
+            input.value = '';
+            
+            // محاكاة رد الذكاء الاصطناعي
+            setTimeout(() => {
+                const responses = [
+                    "أفهم مشكلتك. هل يمكنك إعطائي المزيد من التفاصيل؟",
+                    "شكراً لسؤالك. هذا سؤال مهم، وهذه هي خطوات الحل...",
+                    "بناءً على وصفك، أعتقد أن الحل المناسب هو...",
+                    "لقد واجهت مشكلة مشابهة من قبل. جرب هذه الخطوات...",
+                    "هل جربت إعادة تشغيل الجهاز/التطبيق؟",
+                    "أحتاج إلى مزيد من المعلومات لمساعدتك بشكل أفضل.",
+                    "هذه مشكلة شائعة. إليك الحل المقترح...",
+                    "هل يمكنك إرسال لقطة شاشة للمشكلة؟"
+                ];
+                
+                const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+                
+                chatContainer.innerHTML += `
+                    <div class="ai-message bot">
+                        <strong>🤖 مساعد الدعم:</strong> ${randomResponse}
+                    </div>
                 `;
                 
-                container.prepend(testimonialCard);
-                
-                // حذف الرسائل القديمة إذا زادت عن 10
-                if (container.children.length > 10) {
-                    container.removeChild(container.lastChild);
-                }
-            }, 10000);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }, 1000);
+            
+            chatContainer.scrollTop = chatContainer.scrollHeight;
         }
         
-        // زيادة الإحصائيات تلقائياً
-        function animateStats() {
-            const stats = document.querySelectorAll('.stat-number');
-            stats.forEach(stat => {
-                const target = parseInt(stat.textContent.replace(/,/g, ''));
-                if (isNaN(target)) return;
-                
-                let current = 0;
-                const increment = target / 100;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    stat.textContent = Math.floor(current).toLocaleString();
-                }, 20);
-            });
+        // وظائف مساعدة
+        function getIssueTypeText(type) {
+            const types = {
+                'technical': 'مشكلة تقنية',
+                'website': 'مشكلة في موقع ويب',
+                'mobile': 'مشكلة في تطبيق جوال',
+                'database': 'مشكلة في قاعدة بيانات',
+                'other': 'أخرى'
+            };
+            
+            return types[type] || type;
         }
         
-        // تهيئة الموقع
-        document.addEventListener('DOMContentLoaded', function() {
-            // تفعيل الرسائل الوهمية
-            addTestimonial();
+        function saveTickets() {
+            localStorage.setItem('supportTickets', JSON.stringify(tickets));
+        }
+        
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.style.display = 'block';
             
-            // تحريك الإحصائيات
-            setTimeout(animateStats, 500);
-            
-            // إضافة مؤثرات للأزرار
-            document.querySelectorAll('.feature-card, .contact-method').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                });
-            });
-            
-            // تحديث الوقت الحالي في الإحصائيات
-            setInterval(() => {
-                const now = new Date();
-                const timeElement = document.querySelector('.stat-number:last-child');
-                if (timeElement) {
-                    const visitors = 1245387 + Math.floor(Math.random() * 100);
-                    timeElement.textContent = visitors.toLocaleString();
-                }
-            }, 5000);
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 4000);
+        }
+        
+        // Enter لإرسال في الدردشة مع الذكاء الاصطناعي
+        document.getElementById('aiInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendAIMessage();
+            }
+        });
+        
+        // Enter لإرسال في الرسائل الخاصة
+        document.getElementById('privateMessage').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                sendPrivateMessage();
+            }
         });
     </script>
 </body>
